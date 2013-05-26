@@ -1,10 +1,10 @@
 package net.thucydides.plugins.accessibilitytests.reports;
 
-import net.thucydides.plugins.accessibilitytests.model.TestResultBean;
-import net.thucydides.core.reports.html.HtmlResourceCopier;
-import net.thucydides.plugins.accessibilitytests.reports.templates.FreeMarkerTemplateManager;
-import net.thucydides.core.reports.templates.FreemarkerReportTemplate;
 import com.google.common.base.Preconditions;
+import net.thucydides.core.reports.html.HtmlResourceCopier;
+import net.thucydides.core.reports.templates.FreemarkerReportTemplate;
+import net.thucydides.plugins.accessibilitytests.model.TestResultBean;
+import net.thucydides.plugins.accessibilitytests.reports.templates.FreeMarkerTemplateManager;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +22,9 @@ public class HtmlAccessibilityTestReporter {
 	private static final String DETAILED_ACCESSIBILITY_TEST_REPORT = "freemarker/detailed_report.ftl";
 	private static final String SUMMARY_ACCESSIBILITY_TEST_REPORT = "freemarker/summary_report.ftl";
     private static final String HTML = ".html";
-	private static final String DEFAULT_RESOURCE_DIRECTORY = "report-resources";
+	private static final String DEFAULT_RESOURCE_DIRECTORY = "report-resources/bootstrap";
 	private static final String DEFAULT_OUTPUT_DIRECTORY = "target/accesibility-report";
 	private final FreeMarkerTemplateManager templateManager;
-	
     private String resourceDirectory = DEFAULT_RESOURCE_DIRECTORY;
 	private String outputDirectory = DEFAULT_OUTPUT_DIRECTORY;
 
@@ -96,8 +95,12 @@ public class HtmlAccessibilityTestReporter {
     }
 
     private File getOutputDirectory() {
-		return new File(outputDirectory);
+        return new File(outputDirectory);
 	}
+
+    public void setOutputDirectory(final String outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
 
 	/**
      * Write the actual HTML report to a file with the specified name in the output directory.
