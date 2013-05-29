@@ -11,17 +11,17 @@ import java.io.File;
 
 public class PageSourceAnalyzerStepListener extends BaseStepListener {
 
+    private static final String DEFAULT_OUTPUT_DIRECTORY = "target";
     private WebdriverManager webdriverManager;
     private AcessibilityHtmlSourceAnalyzer accessibilityHtmlSourceAnalyzer =  new AcessibilityHtmlSourceAnalyzer();
     private WebDriver driver;
 
     public PageSourceAnalyzerStepListener() {
-        super(new File("target"));
+        super(new File(DEFAULT_OUTPUT_DIRECTORY));
     }
 
     public void notifyScreenChange() {
-        webdriverManager = Injectors.getInjector().getInstance(WebdriverManager.class);
-        driver = webdriverManager.getWebdriver();
+        driver = getWebdriverManager().getWebdriver();
         PageForAnalyze page = new PageForAnalyze(driver.getCurrentUrl(), driver.getPageSource());
         accessibilityHtmlSourceAnalyzer.analyze(page);
     }
@@ -30,4 +30,10 @@ public class PageSourceAnalyzerStepListener extends BaseStepListener {
         accessibilityHtmlSourceAnalyzer.createSummaryReport();
     }
 
+    private WebdriverManager getWebdriverManager(){
+        if(webdriverManager == null) {
+            webdriverManager = Injectors.getInjector().getInstance(WebdriverManager.class);
+        }
+        return webdriverManager;
+    }
 }
