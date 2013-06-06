@@ -23,7 +23,7 @@ public class HtmlAccessibilityTestReporter {
 	private static final String SUMMARY_ACCESSIBILITY_TEST_REPORT = "freemarker/summary_report.ftl";
     private static final String HTML = ".html";
 	private static final String DEFAULT_RESOURCE_DIRECTORY = "report-resources/bootstrap";
-	private static final String DEFAULT_OUTPUT_DIRECTORY = "target/accesibility-report";
+	private static final String DEFAULT_OUTPUT_DIRECTORY = "target/accessibility-report";
 	private final FreeMarkerTemplateManager templateManager;
     private String resourceDirectory = DEFAULT_RESOURCE_DIRECTORY;
 	private String outputDirectory = DEFAULT_OUTPUT_DIRECTORY;
